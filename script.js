@@ -22,6 +22,31 @@ Task:
 4) Create an instance/object and output its attributes using the getter(s).
 */
 
+const student = {
+  firstName: "Abdulrahman",
+  lastName: "Osman",
+  _gpa: 3.85,   
+
+  // Getter for fullName
+  get fullName() {
+    return `${this.firstName} ${this.lastName}`;
+  },
+
+  // Getter for GPA
+  get gpa() {
+    return this._gpa;
+  },
+
+  // Setter for GPA (with validation 0.0–4.0)
+  set gpa(newGpa) {
+    if (newGpa >= 0.0 && newGpa <= 4.0) {
+      this._gpa = newGpa;
+    } else {
+      console.log("Invalid GPA. Must be between 0.0 and 4.0");
+    }
+  }
+};
+
 // ====================================
 // TODO-2: OBJECT AS MAP + for...in LOOP
 // ====================================
@@ -31,6 +56,19 @@ Task:
 2) Iterate over it with for...in and display each key and value.
 */
 
+const courses = {
+  "EE201": "Circuits I",
+  "EE202": "Circuits II",
+  "EE305": "Electromagnetics",
+  "EE340": "Signals & Systems",
+  "EE370": "Power Systems"
+};
+
+// Iterate with for...in loop
+for (let code in courses) {
+  console.log(`${code} → ${courses[code]}`);
+}
+
 // =========================================
 // TODO-3: STRING OBJECT — charAt() & length
 // =========================================
@@ -39,6 +77,14 @@ Task:
 1) Create a String object or plain string.
 2) Use .charAt(index) and .length to output characters and size.
 */
+
+let myString = "Hello JS!";
+
+// Use .charAt() and .length
+console.log("String:", myString);
+console.log("Length:", myString.length);
+console.log("First character:", myString.charAt(0));
+console.log("Last character:", myString.charAt(myString.length - 1));
 
 // ===================================
 // TODO-4: DATE — day, month, and year
@@ -50,6 +96,12 @@ Task:
 //    (Hint: getDate(), getMonth(), getFullYear() )
 */
 
+let today = new Date();
+
+console.log("Day:", today.getDate());          
+console.log("Month:", today.getMonth() + 1);   
+console.log("Year:", today.getFullYear());
+
 // ============================================================
 // TODO-5: ARRAY + SPREAD — find MIN and MAX from 10 numbers
 // ============================================================
@@ -59,6 +111,16 @@ Task:
 2) Use spread syntax with Math.min(...) and Math.max(...) to find extremes.
 3) Display both values.
 */
+
+const numbers = [12, 5, 99, 3, 47, 21, 88, 1, 64, 50];
+
+let minVal = Math.min(...numbers);
+let maxVal = Math.max(...numbers);
+
+console.log("Numbers:", numbers);
+console.log("Minimum:", minVal);
+console.log("Maximum:", maxVal);
+
 
 // ===================================================================
 // TODO-6: EXCEPTIONS — try/catch/finally with EMPTY ARRAY edge case
@@ -71,6 +133,21 @@ Task:
    in each block so you can see the flow of control.
 */
 
+function findMax(arr) {
+  if (arr.length === 0) {
+    throw new Error("Array is empty!");
+  }
+  return Math.max(...arr);
+}
+
+try {
+  console.log("Max:", findMax([]));   // Passing empty array
+} catch (e) {
+  console.log("Caught an error:", e.message);
+} finally {
+  console.log("Finally block executed.");
+}
+
 // ===================================================================================
 // TODO-7: REGEX + forEach — find words containing 'ab' and log matches from the list
 // ===================================================================================
@@ -82,5 +159,15 @@ Given: const words = ["ban", "babble", "make", "flab"];
 3) For matches, log "<word> matches!".
 4) Display the words that matches the pattern.
 */
+
+const words = ["ban", "babble", "make", "flab"];
+const pattern = /ab/;
+
+words.forEach(word => {
+  if (pattern.test(word)) {
+    console.log(`${word} matches!`);
+  }
+});
+
 
 // End of Advance JavaScript Lab — good luck!
